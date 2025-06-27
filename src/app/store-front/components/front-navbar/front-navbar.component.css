@@ -502,23 +502,6 @@
     order: 0;
   }
 
-  .action-buttons .search-container {
-    display: none;
-  }
-
-  /* Mobile Search in Menu */
-  .mobile-search {
-    width: 100%;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .mobile-search .search-input {
-    width: 100%;
-    padding: 16px 20px 16px 50px;
-  }
-
   /* Ajuste de dropdown para móvil */
   .dropdown-content {
     min-width: 260px;
@@ -589,12 +572,6 @@
     top: -5px;
     right: -5px;
   }
-
-  /* Logo icon más pequeño */
-  .logo-bg .w-8.h-8 {
-    width: 1.75rem;
-    height: 1.75rem;
-  }
 }
 
 /* Dispositivos extra pequeños */
@@ -651,19 +628,6 @@
     right: -8px;
     padding: 16px;
   }
-
-  /* SVG icons más pequeños */
-  .action-btn svg,
-  .mobile-toggle svg {
-    width: 1.125rem;
-    height: 1.125rem;
-  }
-
-  /* Logo icon más pequeño */
-  .logo-bg .w-8.h-8 {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
 }
 
 /* Floating Animation */
@@ -695,11 +659,11 @@
   opacity: 1;
   visibility: visible;
 }
-
 /* Prevenir scroll horizontal */
 /* body, html {
   overflow-x: hidden;
 }
+
 
 .glass-nav {
   overflow-x: hidden;
