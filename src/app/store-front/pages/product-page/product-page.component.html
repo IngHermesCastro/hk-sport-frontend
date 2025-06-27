@@ -1,0 +1,693 @@
+@if (productResource.isLoading() ) {
+<div class="felx justify-center h-screen">
+  <span class="loading loading-spinner loading-lg"></span>
+</div>
+
+}
+
+<!-- Producto -->
+
+<!-- Trasnportado al .ts -->
+
+
+@if (productResource.hasValue() ) {
+<!-- Aqui mi nuevo  diseño -->
+
+<body class="crystal-bg min-h-screen p-4 lg:p-8">
+  <!-- Partículas flotantes -->
+
+  <!-- Botón de regreso -->
+  <div class="mb-6 fade-in">
+    <button
+      class="crystal-btn px-6 py-3 rounded-xl text-white font-medium hover:text-purple-200 flex items-center gap-2"
+      [routerLink]="['/']">
+      <i class="fas fa-arrow-left"></i>
+      Volver a productos
+    </button>
+  </div>
+
+  <!-- Contenedor principal -->
+  <div class="glass-container rounded-3xl p-3 max-w-7xl mx-auto">
+    <!-- Grid principal -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Galería de imágenes -->
+      <div class="fade-in">
+        <div class="glass-section rounded-2xl ">
+          <!-- Componente del carrusel -->
+          <carrusel-image [images]="productResource.value().images" [carouselTitle]="productResource.value().title">
+          </carrusel-image>
+          <!-- <product-carousel [images]="productResource.value()?.images ?? []" /> -->
+        </div>
+      </div>
+
+      <!-- Información del producto -->
+      <div class="space-y-8 fade-in">
+
+        <!-- Header del producto -->
+        <div class="glass-section rounded-2xl p-6">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h1 class="text-3xl lg:text-4xl font-bold text-white mb-2">{{productResource.value().title}}</h1>
+              <p class="text-white/70 text-lg"></p>
+            </div>
+            <button
+              class="crystal-btn w-12 h-12 rounded-full text-white hover:text-pink-400 flex items-center justify-center">
+              <i class="fas fa-heart text-xl"></i>
+            </button>
+          </div>
+
+          <!-- Rating y reviews -->
+          <div class="flex items-center gap-4 mb-6">
+            <div class="flex items-center gap-2">
+              <div class="flex text-yellow-400 text-lg">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <!-- <span class="text-white font-semibold">4.9</span> -->
+            </div>
+
+            <span class="text-green-400 font-medium">En stock</span>
+          </div>
+
+          <!-- Precio -->
+          <div class="price-display rounded-xl p-4 mb-6">
+            <div class="flex items-baseline gap-3">
+              <span class="neon-price text-4xl font-bold text-white">$ {{ productResource.value().price | number}} </span>
+              <!-- <span class="text-white/50 text-xl line-through">$199.99</span>
+              <span class="bg-green-500 text-white text-sm px-3 py-1 rounded-full font-semibold">-20%</span> -->
+            </div>
+            <p class="text-white/70 text-sm mt-2">Precio especial por tiempo limitado</p>
+          </div>
+        </div>
+
+        <!-- Opciones del producto -->
+        <div class="glass-section rounded-2xl p-6">
+          <!-- Colores -->
+          <div class="mb-6">
+            <h3 class="text-white font-semibold text-lg mb-3">Color</h3>
+            <div class="flex gap-3">
+              <button class="premium-selector w-12 h-12 rounded-full selected"
+                style="background: linear-gradient(45deg, #1f2937, #374151);"></button>
+            </div>
+          </div>
+
+          <!-- Tallas -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-white font-semibold text-lg">Talla</h3>
+
+              <button class="text-purple-400 text-sm hover:text-purple-300">Guía de tallas</button>
+            </div>
+            <div class="grid grid-cols-5 gap-3">
+              @for (talla of productResource.value().sizes; track $index) {
+              <button class="premium-selector py-3 rounded-lg text-white font-medium">{{talla}}</button>
+              }
+            </div>
+          </div>
+
+          <!-- Cantidad -->
+
+          <div class="mb-8">
+            <h3 class="text-white font-semibold text-lg mb-3">Cantidad</h3>
+            <div class="flex items-center gap-4">
+              <div class="flex items-center bg-white/5 backdrop-blur-sm rounded-lg border border-white/10">
+                <button class="counter-btn w-12 h-12 rounded-l-lg text-white hover:text-purple-200"
+                  onclick="decreaseQuantity()">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <span id="quantity" class="w-16 text-center text-white font-semibold bg-white/5">1</span>
+                <button class="counter-btn w-12 h-12 rounded-r-lg text-white hover:text-purple-200"
+                  onclick="increaseQuantity()">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+              <span class="text-white/70">Solo quedan 8 unidades</span>
+            </div>
+          </div>
+
+
+          <!-- Botones de acción -->
+          <div class="flex gap-4">
+            <button
+              class="crystal-btn-primary flex-1 py-4 rounded-xl text-white font-semibold hover:text-white flex items-center justify-center gap-2">
+              <i class="fas fa-shopping-cart"></i>
+              Agregar al carrito
+            </button>
+            <button class="crystal-btn py-4 px-6 rounded-xl text-white font-semibold hover:text-purple-200">
+              <i class="fas fa-bolt"></i>
+              Comprar ahora
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs de información -->
+    <div class="mt-12">
+      <div class="glass-section rounded-2xl p-6">
+        <div class="flex gap-1 mb-8 overflow-x-auto">
+          <button class="crystal-tab px-6 py-3 rounded-lg text-white font-medium whitespace-nowrap">
+            Descripción
+          </button>
+          <button class="crystal-tab px-6 py-3 rounded-lg text-white font-medium whitespace-nowrap">
+            Especificaciones
+          </button>
+          <!-- <button class="crystal-tab px-6 py-3 rounded-lg text-white font-medium whitespace-nowrap"
+            [class.active]="activeTab === 'reviews'" (click)="setTab('reviews')">
+
+            Reseñas (342)
+          <!-- <button class="crystal-tab px-6 py-3 rounded-lg text-white font-medium whitespace-nowrap"
+            [class.active]="activeTab === 'shipping'" (click)="setTab('shipping')">
+            Envío y devoluciones
+          </button> -->
+        </div>
+
+        <!-- Tab content -->
+        <div>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-2xl font-bold text-white mb-4">Descripción del producto</h3>
+              <p class="text-white/80 text-lg leading-relaxed mb-4">
+                {{ productResource.value().description}}
+              </p>
+              <!-- <p class="text-white/80 text-lg leading-relaxed">
+                Mas Descripción del producto
+              </p> -->
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="glass-section rounded-xl p-4">
+                <h4 class="text-white font-semibold mb-3 flex items-center gap-2">
+                  <i class="fas fa-shield-alt text-purple-400"></i>
+                  Características principales
+                </h4>
+                <ul class="space-y-2 text-white/70">
+                  <li>• Tecnología Air Max visible</li>
+                  <li>• Upper de cuero sintético premium</li>
+                  <li>• Plantilla acolchada para máximo confort</li>
+                  <li>• Suela de goma antideslizante</li>
+                  <li>• Diseño urbano contemporáneo</li>
+                </ul>
+              </div>
+
+              <div class="glass-section rounded-xl p-4">
+                <h4 class="text-white font-semibold mb-3 flex items-center gap-2">
+                  <i class="fas fa-star text-yellow-400"></i>
+                  Beneficios
+                </h4>
+                <ul class="space-y-2 text-white/70">
+                  <li>• Amortiguación superior</li>
+                  <li>• Transpirabilidad mejorada</li>
+                  <li>• Versatilidad de uso</li>
+                  <li>• Durabilidad garantizada</li>
+                  <li>• Estilo atemporal</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="space-y-6">
+            <h3 class="text-2xl font-bold text-white mb-6">Especificaciones técnicas</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-4">
+                <div class="flex justify-between items-center py-3 border-b border-white/10">
+                  <span class="text-white/70">Material exterior</span>
+                  <span class="text-white font-medium">Cuero sintético premium</span>
+                </div>
+                <div class="flex justify-between items-center py-3 border-b border-white/10">
+                  <span class="text-white/70">Material interior</span>
+                  <span class="text-white font-medium">Textil transpirable</span>
+                </div>
+                <div class="flex justify-between items-center py-3 border-b border-white/10">
+                  <span class="text-white/70">Suela</span>
+                  <span class="text-white font-medium">Goma con tecnología Air Max</span>
+                </div>
+                <div class="flex justify-between items-center py-3 border-b border-white/10">
+                  <span class="text-white/70">Peso (talla 42)</span>
+                  <span class="text-white font-medium">320g aprox.</span>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div class="flex justify-between items-center py-3 border-b border-white/10">
+                  <span class="text-white/70">Cierre</span>
+                  <span class="text-white font-medium">Cordones</span>
+                </div>
+                <div class="flex justify-between items-center py-3 border-b border-white/10">
+                  <span class="text-white/70">Altura del talón</span>
+                  <span class="text-white font-medium">3.2 cm</span>
+                </div>
+                <div class="flex justify-between items-center py-3 border-b border-white/10">
+                  <span class="text-white/70">País de origen</span>
+                  <span class="text-white font-medium">Vietnam</span>
+                </div>
+                <div class="flex justify-between items-center py-3 border-b border-white/10">
+                  <span class="text-white/70">Tallas disponibles</span>
+                  <span class="text-white font-medium">38 a 42</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-section rounded-xl p-6 mt-6">
+              <h4 class="text-white font-semibold mb-4 flex items-center gap-2">
+                <i class="fas fa-ruler text-purple-400"></i>
+                Tabla de medidas (cm)
+              </h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-white/80">
+                  <thead>
+                    <tr class="border-b border-white/20">
+                      <th class="text-left py-3 px-4">Talla</th>
+                      <th class="text-left py-3 px-4">Longitud</th>
+                      <th class="text-left py-3 px-4">Ancho</th>
+                      <th class="text-left py-3 px-4">EU</th>
+                      <th class="text-left py-3 px-4">US</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
+                      <td class="py-3 px-4 font-medium text-white">38</td>
+                      <td class="py-3 px-4">24.5</td>
+                      <td class="py-3 px-4">9.2</td>
+                      <td class="py-3 px-4">38</td>
+                      <td class="py-3 px-4">6</td>
+                    </tr>
+                    <tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
+                      <td class="py-3 px-4 font-medium text-white">39</td>
+                      <td class="py-3 px-4">25.0</td>
+                      <td class="py-3 px-4">9.4</td>
+                      <td class="py-3 px-4">39</td>
+                      <td class="py-3 px-4">6.5</td>
+                    </tr>
+                    <tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
+                      <td class="py-3 px-4 font-medium text-white">40</td>
+                      <td class="py-3 px-4">25.5</td>
+                      <td class="py-3 px-4">9.6</td>
+                      <td class="py-3 px-4">40</td>
+                      <td class="py-3 px-4">7</td>
+                    </tr>
+                    <tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
+                      <td class="py-3 px-4 font-medium text-white">41</td>
+                      <td class="py-3 px-4">26.0</td>
+                      <td class="py-3 px-4">9.8</td>
+                      <td class="py-3 px-4">41</td>
+                      <td class="py-3 px-4">7.5</td>
+                    </tr>
+                    <tr class="hover:bg-white/5 transition-colors">
+                      <td class="py-3 px-4 font-medium text-white">42</td>
+                      <td class="py-3 px-4">26.5</td>
+                      <td class="py-3 px-4">10.0</td>
+                      <td class="py-3 px-4">42</td>
+                      <td class="py-3 px-4">8</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Reviews -->
+        <div>
+          <div class="space-y-6">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-2xl font-bold text-white">Reseñas de clientes</h3>
+              <button class="crystal-btn px-6 py-3 rounded-xl text-white font-medium hover:text-purple-200">
+                Escribir reseña
+              </button>
+            </div>
+
+            <!-- Resumen de calificaciones -->
+            <div class="glass-section rounded-xl p-6 mb-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="text-center">
+                  <div class="text-6xl font-bold text-white mb-2">4.9</div>
+                  <div class="flex justify-center text-yellow-400 text-xl mb-2">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <p class="text-white/70">Basado en 342 reseñas</p>
+                </div>
+                <div class="space-y-3">
+                  <div class="flex items-center gap-3">
+                    <span class="text-white w-2">5</span>
+                    <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    <div class="flex-1 bg-white/10 rounded-full h-2">
+                      <div class="bg-gradient-to-r from-yellow-400 to-yellow-300 h-2 rounded-full" style="width: 85%">
+                      </div>
+                    </div>
+                    <span class="text-white/70 text-sm">85%</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="text-white w-2">4</span>
+                    <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    <div class="flex-1 bg-white/10 rounded-full h-2">
+                      <div class="bg-gradient-to-r from-yellow-400 to-yellow-300 h-2 rounded-full" style="width: 12%">
+                      </div>
+                    </div>
+                    <span class="text-white/70 text-sm">12%</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="text-white w-2">3</span>
+                    <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    <div class="flex-1 bg-white/10 rounded-full h-2">
+                      <div class="bg-gradient-to-r from-yellow-400 to-yellow-300 h-2 rounded-full" style="width: 2%">
+                      </div>
+                    </div>
+                    <span class="text-white/70 text-sm">2%</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="text-white w-2">2</span>
+                    <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    <div class="flex-1 bg-white/10 rounded-full h-2">
+                      <div class="bg-gradient-to-r from-yellow-400 to-yellow-300 h-2 rounded-full" style="width: 1%">
+                      </div>
+                    </div>
+                    <span class="text-white/70 text-sm">1%</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="text-white w-2">1</span>
+                    <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    <div class="flex-1 bg-white/10 rounded-full h-2">
+                      <div class="bg-gradient-to-r from-yellow-400 to-yellow-300 h-2 rounded-full" style="width: 0%">
+                      </div>
+                    </div>
+                    <span class="text-white/70 text-sm">0%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Filtros de reseñas -->
+            <div class="flex flex-wrap gap-3 mb-6">
+              <button class="crystal-tab px-4 py-2 rounded-lg text-white font-medium active">
+                Todas (342)
+              </button>
+              <button class="crystal-tab px-4 py-2 rounded-lg text-white font-medium">
+                5 estrellas (290)
+              </button>
+              <button class="crystal-tab px-4 py-2 rounded-lg text-white font-medium">
+                Con fotos (87)
+              </button>
+              <button class="crystal-tab px-4 py-2 rounded-lg text-white font-medium">
+                Verificadas (245)
+              </button>
+            </div>
+
+            <!-- Lista de reseñas -->
+            <div class="space-y-6">
+              <div class="review-card rounded-xl p-6">
+                <div class="flex items-start gap-4">
+                  <div
+                    class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center text-white font-bold">
+                    MR
+                  </div>
+                  <div class="flex-1">
+                    <div class="flex items-center justify-between mb-2">
+                      <div>
+                        <h4 class="text-white font-semibold">María Rodríguez</h4>
+                        <p class="text-white/60 text-sm">Compra verificada • Hace 2 días</p>
+                      </div>
+                      <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                    <p class="text-white/80 mb-3">
+                      Increíbles sneakers! La calidad es excepcional y la comodidad es inmejorable.
+                      Los uso tanto para correr como para el día a día. La amortiguación Air Max
+                      realmente hace la diferencia. Totalmente recomendados.
+                    </p>
+                    <!-- Fotos de la reseña -->
+                    <div class="flex gap-2 mb-3">
+                      <img
+                        src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=80&h=80&fit=crop&crop=center"
+                        alt="Foto reseña"
+                        class="w-16 h-16 rounded-lg object-cover cursor-pointer hover:scale-105 transition-transform">
+                      <img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=80&h=80&fit=crop&crop=center"
+                        alt="Foto reseña"
+                        class="w-16 h-16 rounded-lg object-cover cursor-pointer hover:scale-105 transition-transform">
+                    </div>
+                    <div class="flex items-center gap-4 text-sm text-white/60">
+                      <button class="hover:text-purple-400 transition-colors">
+                        <i class="fas fa-thumbs-up mr-1"></i>
+                        Útil (24)
+                      </button>
+                      <button class="hover:text-purple-400 transition-colors">
+                        <i class="fas fa-reply mr-1"></i>
+                        Responder
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón cargar más -->
+            <div class="text-center pt-6">
+              <button class="crystal-btn px-8 py-3 rounded-xl text-white font-medium hover:text-purple-200">
+                Cargar más reseñas
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Shipping -->
+        <div class="tab-content">
+          <div class="space-y-8">
+            <h3 class="text-2xl font-bold text-white mb-6">Envío y devoluciones</h3>
+
+            <!-- Opciones de envío -->
+            <div class="glass-section rounded-xl p-6">
+              <h4 class="text-white font-semibold mb-4 flex items-center gap-2">
+                <i class="fas fa-truck text-purple-400"></i>
+                Opciones de envío
+              </h4>
+              <div class="space-y-4">
+                <div class="flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/10">
+                  <div>
+                    <h5 class="text-white font-medium">Envío estándar</h5>
+                    <p class="text-white/70 text-sm">Entrega en 5-7 días hábiles</p>
+                  </div>
+                  <span class="text-green-400 font-semibold">GRATIS</span>
+                </div>
+                <div class="flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/10">
+                  <div>
+                    <h5 class="text-white font-medium">Envío express</h5>
+                    <p class="text-white/70 text-sm">Entrega en 2-3 días hábiles</p>
+                  </div>
+                  <span class="text-white font-semibold">$9.99</span>
+                </div>
+                <div class="flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/10">
+                  <div>
+                    <h5 class="text-white font-medium">Envío mismo día</h5>
+                    <p class="text-white/70 text-sm">Entrega el mismo día (solo ciudades principales)</p>
+                  </div>
+                  <span class="text-white font-semibold">$19.99</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Política de devoluciones -->
+            <div class="glass-section rounded-xl p-6">
+              <h4 class="text-white font-semibold mb-4 flex items-center gap-2">
+                <i class="fas fa-undo text-purple-400"></i>
+                Política de devoluciones
+              </h4>
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fas fa-check text-green-400 text-sm"></i>
+                  </div>
+                  <div>
+                    <h5 class="text-white font-medium mb-1">30 días para devoluciones</h5>
+                    <p class="text-white/70">Puedes devolver tu producto dentro de los 30 días posteriores a la compra.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fas fa-check text-green-400 text-sm"></i>
+                  </div>
+                  <div>
+                    <h5 class="text-white font-medium mb-1">Devolución gratuita</h5>
+                    <p class="text-white/70">No cobramos gastos de envío por devoluciones dentro del periodo
+                      establecido.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="fas fa-check text-green-400 text-sm"></i>
+                  </div>
+                  <div>
+                    <h5 class="text-white font-medium mb-1">Reembolso rápido</h5>
+                    <p class="text-white/70">Procesamos los reembolsos en 3-5 días hábiles una vez recibido el producto.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Seguimiento de pedido -->
+            <div class="glass-section rounded-xl p-6">
+              <h4 class="text-white font-semibold mb-4 flex items-center gap-2">
+                <i class="fas fa-map-marker-alt text-purple-400"></i>
+                Seguimiento de pedido
+              </h4>
+              <p class="text-white/80 mb-4">
+                Una vez que tu pedido sea enviado, recibirás un número de seguimiento por email
+                para que puedas rastrear tu paquete en tiempo real.
+              </p>
+              <div class="flex gap-4">
+                <button class="crystal-btn px-6 py-3 rounded-xl text-white font-medium hover:text-purple-200">
+                  <i class="fas fa-search mr-2"></i>
+                  Rastrear pedido
+                </button>
+                <button class="crystal-btn px-6 py-3 rounded-xl text-white font-medium hover:text-purple-200">
+                  <i class="fas fa-headset mr-2"></i>
+                  Contactar soporte
+                </button>
+              </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="glass-section rounded-xl p-6">
+              <h4 class="text-white font-semibold mb-4 flex items-center gap-2">
+                <i class="fas fa-question-circle text-purple-400"></i>
+                Preguntas frecuentes
+              </h4>
+              <div class="space-y-4">
+                <details class="group">
+                  <summary
+                    class="flex items-center justify-between cursor-pointer text-white font-medium py-2 list-none">
+                    ¿Puedo cambiar mi pedido después de realizarlo?
+                    <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                  </summary>
+                  <p class="text-white/70 mt-2 pl-4">
+                    Puedes modificar tu pedido dentro de las primeras 2 horas después de realizarlo,
+                    siempre que aún no haya sido procesado para envío.
+                  </p>
+                </details>
+                <details class="group">
+                  <summary
+                    class="flex items-center justify-between cursor-pointer text-white font-medium py-2 list-none">
+                    ¿Qué pasa si el producto no me queda bien?
+                    <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                  </summary>
+                  <p class="text-white/70 mt-2 pl-4">
+                    Ofrecemos cambios gratuitos por talla dentro de los 30 días. Solo asegúrate de que
+                    el producto esté en condiciones originales con etiquetas.
+                  </p>
+                </details>
+                <details class="group">
+                  <summary
+                    class="flex items-center justify-between cursor-pointer text-white font-medium py-2 list-none">
+                    ¿Hacen envíos internacionales?
+                    <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                  </summary>
+                  <p class="text-white/70 mt-2 pl-4">
+                    Actualmente realizamos envíos a toda América Latina. Los tiempos y costos varían
+                    según el destino. Contacta con soporte para más información.
+                  </p>
+                </details>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Productos relacionados -->
+    <div class="mt-16 fade-in">
+      <div class="glass-section rounded-2xl p-8">
+        <h3 class="text-2xl font-bold text-white mb-8 text-center">Productos relacionados</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            class="glass-section rounded-xl p-4 hover:transform hover:scale-105 transition-all duration-300 cursor-pointer">
+            <img class="w-full h-48 object-cover rounded-lg mb-4 pointer-events-none">
+            <h4 class="text-white font-semibold mb-2">related.name </h4>
+            <p class="text-white/70 text-sm mb-3"> related.description </p>
+            <div class="flex items-center justify-between">
+              <span class="text-white font-bold">$ related.price | number </span>
+              <button
+                class="crystal-btn w-10 h-10 rounded-full text-white hover:text-purple-200 flex items-center justify-center">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zoom Image Modal -->
+  <div id="zoomModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden">
+    <div class="flex items-center justify-center min-h-screen">
+      <div class="relative">
+        <span class="absolute top-2 right-2 cursor-pointer" onclick="closeZoom()">
+          <i class="fas fa-times text-white text-3xl"></i>
+        </span>
+        <img id="zoomImage" src="" alt="Zoomed Image" class="max-w-full max-h-screen rounded-lg">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Funciones de zoom de imagen
+    function openZoom(src) {
+      document.getElementById('zoomImage').src = src;
+      document.getElementById('zoomModal').classList.remove('hidden');
+    }
+
+    function closeZoom() {
+      document.getElementById('zoomModal').classList.add('hidden');
+    }
+
+    // Funciones para cambiar imagen principal
+    function changeImage(src) {
+      const activeThumbnail = document.querySelector('.thumbnail.active');
+      if (activeThumbnail) {
+        activeThumbnail.classList.remove('active');
+      }
+      const newActiveThumbnail = [...document.querySelectorAll('.thumbnail')].find(thumb => thumb.getAttribute(
+        'src') === src);
+      if (newActiveThumbnail) {
+        newActiveThumbnail.classList.add('active');
+      }
+      document.getElementById('mainImage').src = src;
+    }
+
+    // Funciones para contador de cantidad
+    function increaseQuantity() {
+      const quantityElement = document.getElementById('quantity');
+      let quantity = parseInt(quantityElement.innerText);
+      quantity++;
+      quantityElement.innerText = quantity;
+    }
+
+    function decreaseQuantity() {
+      const quantityElement = document.getElementById('quantity');
+      let quantity = parseInt(quantityElement.innerText);
+      if (quantity > 1) {
+        quantity--;
+        quantityElement.innerText = quantity;
+      }
+    }
+
+  </script>
+</body>
+
+}

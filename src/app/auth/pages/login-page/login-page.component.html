@@ -1,0 +1,71 @@
+<body>
+  <!-- Partículas flotantes -->
+  <div class="particle" style="left: 15%; animation-delay: 0s;"></div>
+  <div class="particle" style="left: 25%; animation-delay: 2s;"></div>
+  <div class="particle" style="left: 35%; animation-delay: 4s;"></div>
+  <div class="particle" style="left: 45%; animation-delay: 1s;"></div>
+  <div class="particle" style="left: 55%; animation-delay: 3s;"></div>
+  <div class="particle" style="left: 65%; animation-delay: 5s;"></div>
+  <div class="particle" style="left: 75%; animation-delay: 2.5s;"></div>
+  <div class="particle" style="left: 85%; animation-delay: 4.5s;"></div>
+
+  <div class="container">
+    <div class="form-container">
+      <a class="close-button" [routerLink]="['/']" aria-label="Cerrar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </a>
+      <h1 class="title">Iniciar Sesión</h1>
+
+      <form class="flex flex-col gap-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <div class="input-container">
+            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+              <path
+                d="M2.5 3A1.5 1.5 0 0 0 1 4.5v7A1.5 1.5 0 0 0 2.5 13h11A1.5 1.5 0 0 0 15 11.5v-7A1.5 1.5 0 0 0 13.5 3h-11Z">
+              </path>
+              <path
+                d="M14 4.5V5l-6 3-6-3V4.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5ZM1 11.5V11l6-3 6 3v.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5Z">
+              </path>
+            </svg>
+            <input type="email" class="form-input" placeholder="Correo electrónico" formControlName="email" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-container">
+            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <input type="password" class="form-input" placeholder="Contraseña" formControlName="password" required />
+          </div>
+        </div>
+
+        <button type="submit" class="submit-button" id="submitButton">
+          <span id="buttonText">Iniciar Sesión</span>
+        </button>
+
+        @if (hasError()) {
+        <div role="alert" class="alert alert-error fadeIn fixed bottom-5 right-5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>Por favor, la información ingresada es incorrecta.</span>
+        </div>
+        }
+
+        <div class="register-link">
+          ¿No tienes cuenta?
+          <a [routerLink]="['/auth/register']" class="text-secondary">Crea una aquí</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,219 @@
+<nav class="glass-nav fixed w-full top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Logo Section -->
+      <div class="logo-container">
+        <a href="#" class="logo-bg flex items-center space-x-3 floating">
+          <div class="w-8 h-8 bg-white/90 rounded-xl flex items-center justify-center p-1 backdrop-blur-sm">
+            <img src="assets/images/logo-back.png" alt="HKSport" class="w-full h-full object-contain">
+          </div>
+          <span class="logo-text" font-montserrat >HKSport</span>
+        </a>
+      </div>
+
+      <!-- Navigation Menu (Responsive) -->
+      <div class="nav-menu" id="nav-menu">
+        <a class="nav-link" routerLink="/gender/men"  routerLinkActive="text-secundary">
+          Hombres
+        </a>
+        <a class="nav-link" routerLink="/gender/women"  routerLinkActive="text-secundary">
+          Mujeres
+        </a>
+        <a class="nav-link" routerLink="/gender/kid"  routerLinkActive="text-secundary">
+          Kids
+        </a>
+        <a  routerLinkActive="router-link-active" class="nav-link">
+          Contacto
+        </a>
+
+        <!-- Mobile Search (only visible on mobile) -->
+        <!-- <div class="mobile-search">
+          <div class="search-container">
+            <div class="relative">
+              <svg class="search-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Buscar productos..."
+                class="search-input"
+              >
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+      <!-- Right Section -->
+      <div class="flex items-center space-x-4">
+
+        <!-- Desktop Search -->
+        <div class="hidden lg:block search-container">
+          <div class="relative">
+            <svg class="search-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input
+              type="text"
+              placeholder="Buscar productos..."
+              class="search-input"
+            >
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+
+          <!-- Wishlist -->
+          <button class="action-btn relative" title="Lista de deseos">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            <span class="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
+              2
+            </span>
+          </button>
+
+          <!-- Cart -->
+          <div class="dropdown">
+            <button class="cart-btn action-btn" title="Carrito de compras">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              <span class="cart-badge">3</span>
+            </button>
+
+            <div class="dropdown-content">
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="font-bold text-lg text-gray-800">Carrito</h3>
+                <span class="text-sm text-gray-500">3 productos</span>
+              </div>
+
+              <div class="space-y-4 mb-6">
+                <div class="flex items-center justify-between py-3 border-b border-gray-100">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg flex items-center justify-center">
+                      <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="font-medium text-sm text-gray-800">Producto Demo</p>
+                      <p class="text-xs text-gray-500">Cantidad: 1</p>
+                    </div>
+                  </div>
+                  <span class="font-semibold text-purple-600">$299</span>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between mb-6 pt-4 border-t border-gray-100">
+                <span class="font-bold text-gray-800">Total:</span>
+                <span class="font-bold text-xl text-purple-600">$1,299</span>
+              </div>
+
+              <button class="w-full bg-gradient-to-r from-purple-600 via-blue-600 to-purple-700 text-white py-3 rounded-16 font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5">
+                Ver Carrito Completo
+              </button>
+            </div>
+          </div>
+
+          <!-- Profile -->
+          <div class="dropdown">
+            <button class="profile-avatar" title="Mi perfil">
+              <img
+                src="assets/images/user.png"
+                alt="Profile"
+                class="w-full h-full object-cover"
+              >
+            </button>
+
+            <div class="dropdown-content">
+              <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-gray-100">
+                <img
+                  src="assets/images/admin.png"
+                  alt="Profile"
+                  class="w-12 h-12 rounded-full"
+                >
+                <div>
+                  @if (authService.authStatus() === 'authenticated') {
+
+                    <p class="font-semibold text-gray-800">{{ authService.user()?.fullName }}</p>
+                  <p class="text-sm text-gray-500">mail</p>
+
+                  }
+
+
+
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <a href="#" class="flex items-center space-x-3 px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                  </svg>
+                  <span>Mis Pedidos</span>
+                </a>
+
+
+
+                <a href="#" class="flex items-center space-x-3 px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                  </svg>
+                  <span>Lista de Deseos</span>
+                </a>
+                @if (authService.isAdmin()) {
+                    <a [routerLink]="['/admin']" class="flex items-center space-x-3 px-3 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+
+                  <span>Panel Administrativo</span>
+                </a>
+                  }
+
+
+
+                <hr class="my-2 border-gray-200">
+
+                <a href="#" class="flex items-center space-x-3 px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                  </svg>
+                  @if (authService.authStatus() === 'authenticated') {
+                    <span (click)="authService.logout()" >Cerrar Sesión</span>
+                  }
+                  <!--  -->
+                  @else if (authService.authStatus() === 'not-authenticated') {
+                     <span><a routerLink="/auth/login">Inicia sesion</a></span>
+                  }
+
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Toggle -->
+          <button
+            class="mobile-toggle md:hidden"
+
+            title="Menú"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+</nav>

@@ -1,0 +1,97 @@
+<div class="pagination-container">
+  <div class="pagination-wrapper">
+
+    <!-- Previous Button -->
+    @if (showNavButtons()) {
+      <button
+        class="pagination-btn nav-btn"
+        [class.disabled]="isPreviousDisabled()"
+        [disabled]="isPreviousDisabled()"
+        [routerLink]="[]"
+        [queryParams]="{ page: activePage() - 1 }"
+        (click)="goToPreviousPage()"
+        [attr.aria-label]="'Página anterior'"
+      >
+        ‹ Anterior
+      </button>
+    }
+
+    <!-- First Page -->
+    @if (showFirstPage()) {
+      <button
+        class="pagination-btn"
+        [class.active]="1 === activePage()"
+        [routerLink]="[]"
+        [queryParams]="{ page: 1 }"
+        (click)="setActivePage(1)"
+        [attr.aria-label]="'Página 1'"
+        [attr.aria-current]="1 === activePage() ? 'page' : null"
+      >
+        1
+      </button>
+    }
+
+    <!-- Start Ellipsis -->
+    @if (showStartEllipsis()) {
+      <span class="pagination-btn disabled ellipsis" aria-hidden="true">...</span>
+    }
+
+    <!-- Visible Pages -->
+    @for (page of getVisiblePages(); track page) {
+      <button
+        class="pagination-btn"
+        [class.active]="page === activePage()"
+        [routerLink]="[]"
+        [queryParams]="{ page: page }"
+        (click)="setActivePage(page)"
+        [attr.aria-label]="'Página ' + page"
+        [attr.aria-current]="page === activePage() ? 'page' : null"
+      >
+        {{ page }}
+      </button>
+    }
+
+    <!-- End Ellipsis -->
+    @if (showEndEllipsis()) {
+      <span class="pagination-btn disabled ellipsis" aria-hidden="true">...</span>
+    }
+
+    <!-- Last Page -->
+    @if (showLastPage()) {
+      <button
+        class="pagination-btn"
+        [class.active]="pages() === activePage()"
+        [routerLink]="[]"
+        [queryParams]="{ page: pages() }"
+        (click)="setActivePage(pages())"
+        [attr.aria-label]="'Página ' + pages()"
+        [attr.aria-current]="pages() === activePage() ? 'page' : null"
+      >
+        {{ pages() }}
+      </button>
+    }
+
+    <!-- Page Info -->
+    @if (showPageInfo()) {
+      <div class="page-info" aria-live="polite">
+        {{ activePage() }} de {{ pages() }}
+      </div>
+    }
+
+    <!-- Next Button -->
+    @if (showNavButtons()) {
+      <button
+        class="pagination-btn nav-btn"
+        [class.disabled]="isNextDisabled()"
+        [disabled]="isNextDisabled()"
+        [routerLink]="[]"
+        [queryParams]="{ page: activePage() + 1 }"
+        (click)="goToNextPage()"
+        [attr.aria-label]="'Página siguiente'"
+      >
+        Siguiente ›
+      </button>
+    }
+
+  </div>
+</div>

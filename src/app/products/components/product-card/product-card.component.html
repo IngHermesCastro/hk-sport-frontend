@@ -1,0 +1,61 @@
+<body class="crystal-bg min-h-screen pt-10 px-2 sm:px-4 overflow-x-hidden fadeIn "
+  [routerLink]="['/product', product().slug]">
+  <div class="container mx-auto p-6">
+    <ng-container>
+      <div class="glass-card rounded-2xl p-6 group cursor-pointer">
+        <div class="premium-badge text-white text-xs px-3 py-1 rounded-full absolute top-4 left-4 z-10 font-semibold">
+          {{ product().gender }}
+        </div>
+        <button
+          class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all">
+          <i class="fas fa-heart text-white/70 hover:text-pink-400 transition-colors"></i>
+        </button>
+        <div class="product-image rounded-xl mb-6 overflow-hidden">
+          <img class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-700"
+            [src]="product().images | productImage" [alt]="product().title">
+          <!-- [src]="imageUrl()" -->
+        </div>
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-white font-semibold text-lg mb-1"> {{product().title | slice:0:30  }}.. </h3>
+            <p class="text-white/70 text-sm">{{ product().description | slice:0:85}}... </p>
+          </div>
+          <div class="space-y-2">
+            <!-- <span class="text-white/80 text-sm font-medium">Stock: </span> -->
+            <!-- <span class="text-green-400 font-medium">{{  product().stock }}</span> -->
+            <span class="text-green-400 font-medium">En Stock</span>
+          </div>
+          <!-- Tallas -->
+          <div class="space-y-2">
+            <span class="text-white/80 text-sm font-medium">Tallas disponibles:</span>
+            <ng-container>
+              <div class="flex gap-2 flex-wrap">
+                @for (talla of product().sizes; track $index) {
+                <button
+                  class="size-option w-10 h-10 rounded-lg text-white text-sm font-medium hover:text-purple-200">{{talla  }}</button>
+                }
+
+              </div>
+            </ng-container>
+          </div>
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="neon-price text-2xl font-bold text-white">${{product().price | number}}</span>
+            </div>
+          </div>
+          <div class="flex gap-3 pt-2">
+            <button class="crystal-btn flex-1 py-3 rounded-xl text-white font-medium hover:text-purple-200"
+              [routerLink]="['/product', product().slug]" routerLinkActive="router-link-active">
+              <i class="fas fa-shopping-cart mr-2"></i>
+              Ver producto
+            </button>
+            <button class="crystal-btn w-12 h-12 rounded-xl text-white hover:text-purple-200"
+              [routerLink]="['/product', product().slug]">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <!-- </div> -->

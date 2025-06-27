@@ -1,0 +1,22 @@
+/* Estilos personalizados para el glassmorphism */
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.15); /* Fondo blanco ligeramente transparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    -webkit-backdrop-filter: blur(10px); /* Para compatibilidad con Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 12px; /* Bordes redondeados para un look moderno */
+  }
+
+  /* Animación sutil al pasar el mouse */
+  .glassmorphism:hover {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px); /* Pequeño levantamiento */
+  }
+
+  /* Estilos específicos para el select para asegurar la consistencia */
+  .select-glassmorphism option {
+      background: #333; /* Fondo oscuro para las opciones para mejor contraste */
+      color: #eee;
+  }

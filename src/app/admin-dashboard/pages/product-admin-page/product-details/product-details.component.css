@@ -1,0 +1,66 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Enhanced focus states */
+.group\/input:focus-within .bg-gradient-to-r {
+  opacity: 1;
+}
+
+/* Custom scrollbar for better UX */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* File input hover effects */
+.group\/upload:hover .border-dashed {
+  animation: pulse 2s infinite;
+}
+
+/* Enhanced button interactions */
+button:active {
+  transform: scale(0.98);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .grid-cols-1.xl\\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .p-6.lg\\:p-8 {
+    padding: 1rem;
+  }
+
+  .text-2xl.lg\\:text-4xl {
+    font-size: 1.5rem;
+  }
+}

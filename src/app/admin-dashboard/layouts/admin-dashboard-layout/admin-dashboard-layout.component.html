@@ -1,0 +1,133 @@
+<!-- admin-dashboard-layout.component.html -->
+<!-- <div class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-800 overflow-y-scroll w-screen h-screen antialiased text-slate-100 selection:bg-blue-400 selection:text-white relative"> -->
+<div class="bg-gradient-to-br from-slate-900  to-slate-800 overflow-y-scroll w-screen h-screen antialiased text-slate-100 selection:bg-blue-400 selection:text-white relative">
+  <!-- Background animated elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+    <div class="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+    <div class="absolute top-40 left-1/2 w-60 h-60 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse" style="animation-delay: 4s;"></div>
+  </div>
+
+  <div class="flex flex-col relative w-screen">
+    <!-- Modern Glassmorphism Sidebar -->
+    <div id="menu" class="backdrop-blur-xl bg-white/5 border-r border-white/10 min-h-screen z-20 text-slate-100 w-64 lg:w-72 fixed left-0 h-screen overflow-y-auto shadow-2xl">
+      <!-- Gradient overlay for extra glass effect -->
+      <div class="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/5 pointer-events-none"></div>
+
+      <!-- Logo Section -->
+      <div id="logo" class="my-6 px-6 relative z-10">
+        <div class="group cursor-pointer" routerLink="/">
+          <h1 class="text-xl lg:text-3xl font-bold text-white transition-all duration-300 group-hover:scale-105">
+            HK<span class="text-transparent bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text">SPORT</span>
+          </h1>
+          <p class="text-slate-300 text-sm mt-1 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+            Bienvenido al Panel Administrativo
+          </p>
+        </div>
+      </div>
+
+      <!-- Profile Section -->
+      <div id="profile" class="px-6 py-8 relative z-10">
+        <p class="text-slate-400 text-sm font-medium mb-3">Bienvenido</p>
+        <a href="#" class="group inline-flex space-x-3 items-center p-3 rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg w-full">
+          <div class="relative">
+            <img class="rounded-full w-10 h-10 ring-2 ring-white/20 group-hover:ring-white/40 transition-all duration-300"
+              src="https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=128&q=80"
+              alt="Profile">
+            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-slate-800"></div>
+          </div>
+          <div class="flex-1">
+            <span class="text-sm lg:text-base font-semibold text-white block group-hover:text-blue-300 transition-colors duration-300">
+              {{user()?.fullName}}
+            </span>
+            <span class="text-xs text-slate-400">Administrator</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Navigation Section -->
+      <div id="nav" class="w-full px-4 relative z-10">
+        <nav class="space-y-2">
+          <!-- Dashboard Link -->
+          <a [routerLink]="['/admin/dashboard']"
+             routerLinkActive="bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-blue-400/50 shadow-lg shadow-blue-500/20"
+             class="group w-full px-4 py-4 inline-flex space-x-3 items-center rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10 hover:border-blue-400/30 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            <div class="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="w-5 h-5 text-white">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+              </svg>
+            </div>
+            <div class="flex flex-col flex-1">
+              <span class="text-base font-semibold leading-5 text-white group-hover:text-blue-300 transition-colors duration-300">Dashboard</span>
+              <span class="text-xs text-slate-400 hidden lg:block group-hover:text-slate-300 transition-colors duration-300">Data Overview</span>
+            </div>
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+
+          <!-- Products Link -->
+          <a [routerLink]="['/admin/products']"
+             routerLinkActive="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border-purple-400/50 shadow-lg shadow-purple-500/20"
+             class="group w-full px-4 py-4 inline-flex space-x-3 items-center rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-pink-500/10 hover:border-purple-400/30 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            <div class="p-2 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 shadow-lg group-hover:shadow-purple-500/25 transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="w-5 h-5 text-white">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+              </svg>
+            </div>
+            <div class="flex flex-col flex-1">
+              <span class="text-base font-semibold leading-5 text-white group-hover:text-purple-300 transition-colors duration-300">Productos</span>
+              <span class="text-xs text-slate-400 hidden lg:block group-hover:text-slate-300 transition-colors duration-300">Listado de Productos</span>
+            </div>
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+        </nav>
+
+        <!-- Divider with gradient -->
+        <div class="my-8 relative">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gradient-to-r from-transparent via-white/20 to-transparent "></div>
+          </div>
+        </div>
+
+        <!-- Logout Button -->
+        <button (click)="authService.logout()"
+                class="group w-full px-4 py-4 inline-flex space-x-3 items-center rounded-xl backdrop-blur-sm bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 hover:border-red-400/40 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-red-500/20 text-red-300 hover:text-white">
+          <div class="p-2 rounded-lg bg-gradient-to-br from-red-500 to-red-600 shadow-lg group-hover:shadow-red-500/25 transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-white">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+            </svg>
+          </div>
+          <span [routerLink]="['/']" class="text-base font-semibold">Cerrar Sesión</span>
+        </button>
+      </div>
+
+      <!-- Decorative bottom element -->
+      <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white/5 to-transparent pointer-events-none"></div>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="flex-1 ml-64 lg:ml-72 pt-6 px-6 relative z-10">
+    <div class="backdrop-blur-sm bg-white/5 rounded-2xl border border-white/10 shadow-2xl min-h-[calc(100vh-3rem)] p-6">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Toggle (Hidden by default, can be implemented later) -->
+  <button class="lg:hidden fixed top-4 left-4 z-30 p-3 rounded-xl backdrop-blur-sm bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all duration-300">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </button>
+</div>
